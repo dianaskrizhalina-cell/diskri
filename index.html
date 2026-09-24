@@ -260,10 +260,6 @@
     .hero > * {
       position: relative;
       z-index: 1;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 100%;
     }
     .eyebrow {
       font-size: 13px;
@@ -272,18 +268,18 @@
       margin-bottom: clamp(18px, 3vw, 34px) !important;
     }
     .hero h1 {
-      font-size: clamp(76px, 18vw, 270px) !important;
-      line-height: .78 !important;
-      letter-spacing: -.075em !important;
-      margin: 12vh 0 0 !important;
-      width: auto !important;
+      font-size: clamp(180px, 42vw, 680px) !important;
+      line-height: .70 !important;
+      letter-spacing: -.10em !important;
+      margin: 0 !important;
+      width: 100% !important;
       color: #fff !important;
       text-shadow: 0 4px 0 rgba(0,0,0,.08) !important;
       font-weight: 900;
     }
     .hero h1 span {
       display: block;
-      margin-left: .18em !important;
+      margin-left: .10em !important;
     }
     .hero-bottom {
       display: flex;
@@ -326,8 +322,7 @@
     .price-grid,
     .approach-grid,
     .steps,
-    .contact-grid,
-    .footer {
+    .contact-grid {
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
@@ -671,8 +666,8 @@
       .socials-toggle .toggle-icon { width: 17px; height: 17px; }
       .socials-dropdown { top: 46px; min-width: 140px; }
       .hero { padding: 100px 20px 28px; background-position: center center !important; }
-      .hero h1 { font-size: clamp(48px, 28vw, 115px) !important; line-height: .76 !important; letter-spacing: -.075em !important; margin: 0 !important; }
-      .hero h1 span { display: block; margin-left: .14em !important; }
+      .hero h1 { font-size: min(44vw, calc(100vw - 80px)) !important; line-height: .72 !important; letter-spacing: -.085em !important; margin: 0 !important; }
+      .hero h1 span { display: block; margin-left: .10em !important; }
       .hero-bottom { align-items: start; flex-direction: column; }
       .section { padding: 70px 20px; }
       .intro-grid, .about-grid, .approach-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
