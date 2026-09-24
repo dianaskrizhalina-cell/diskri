@@ -223,8 +223,15 @@
       color: #000;
     }
 
-    /* Open dropdown when toggle is hovered or clicked */
-    .collapsed-socials:hover .socials-dropdown,
+    /* Open dropdown when toggle is hovered (desktop) or clicked */
+    @media (hover: hover) {
+      .collapsed-socials:hover .socials-dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) scale(1) !important;
+        pointer-events: auto !important;
+      }
+    }
     .socials.is-open .socials-dropdown {
       opacity: 1 !important;
       visibility: visible !important;
@@ -662,9 +669,9 @@
       .nav a { padding: 9px 8px; font-size: 9px; }
       .socials { right: 12px !important; top: 12px !important; z-index: 1010 !important; }
       .hero-socials a { width: 34px; height: 34px; font-size: 9px; }
-      .socials-toggle { width: 38px; height: 38px; box-shadow: 4px 4px 0 var(--blue); }
+      .socials-toggle { width: 43px; height: 43px; box-shadow: 4px 4px 0 var(--blue); }
       .socials-toggle .toggle-icon { width: 17px; height: 17px; }
-      .socials-dropdown { top: 46px; min-width: 140px; }
+      .socials-dropdown { top: 51px; min-width: 140px; }
       .hero { padding: 100px 20px 28px; background-position: center center !important; }
       .hero h1 { font-size: min(44vw, calc(100vw - 80px)) !important; line-height: .72 !important; letter-spacing: -.085em !important; margin: 0 !important; }
       .hero h1 span { display: block; margin-left: .10em !important; }
