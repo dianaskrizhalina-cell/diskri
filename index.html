@@ -81,6 +81,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('showMoreBtn');
     var hg = document.getElementById('hiddenGallery');
+    
     if(btn && hg) {
         btn.addEventListener('click', function() {
             if(hg.style.display === 'none' || hg.style.display === '') {
@@ -91,6 +92,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.textContent = 'Смотреть ещё';
             }
         });
+    }
+
+    // Автоматическая подгрузка новых картинок
+    var nextImageIndex = 24; // Начинаем проверять с 24-й картинки
+    
+    function checkNextImage() {
+        var img = new Image();
+        img.onload = function() {
+            // Картинка существует, добавляем в скрытую галерею
+            var figure = document.createElement('figure');
+            figure.className = 'card';
+            var newImg = document.createElement('img');
+            newImg.src = this.src; // используем загруженный src
+            newImg.alt = "Арт-портрет DI SKRI";
+            newImg.loading = "lazy";
+            figure.appendChild(newImg);
+            hg.appendChild(figure);
+            
+            // Проверяем следующую
+            nextImageIndex++;
+            checkNextImage();
+        };
+        img.onerror = function() {
+            // Если ошибка (404 Not Found), значит новых картинок больше нет
+        };
+        img.src = 'static/image_' + nextImageIndex + '.jpg';
+    }
+    
+    if(hg) {
+        checkNextImage();
     }
 });
 </script>
