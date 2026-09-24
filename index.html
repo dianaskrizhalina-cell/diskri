@@ -143,14 +143,14 @@
     }
 
     .socials-toggle {
-      width: 40px;
-      height: 40px;
+      width: 52px;
+      height: 52px;
       background: #fff;
       color: #000;
       border: 1px solid #000;
-      box-shadow: 4px 4px 0 var(--blue);
+      box-shadow: 6px 6px 0 var(--blue);
       cursor: pointer;
-      font-size: 16px;
+      font-size: 22px;
       font-weight: 900;
       display: flex;
       align-items: center;
@@ -165,7 +165,7 @@
 
     .socials-dropdown {
       position: absolute;
-      top: 48px;
+      top: 60px;
       right: 0;
       background: rgba(5, 5, 5, .96);
       border: 1px solid rgba(255, 255, 255, .35);
@@ -626,11 +626,11 @@
 
     /* Responsive / Mobile */
     @media (max-width: 800px) {
-      .top { left: 12px; right: 65px; top: 12px; }
+      .top { left: 12px !important; right: 62px !important; top: 12px !important; }
       .nav { width: 100%; justify-content: space-between; }
       .nav a { padding: 9px 8px; font-size: 9px; }
-      .socials { right: 12px; top: 12px; }
-      .hero-socials a { width: 34px; height: 34px; font-size: 9px; } .socials-toggle { width: 34px; height: 34px; font-size: 14px; } .socials-dropdown { top: 42px; min-width: 140px; }} .socials.is-collapsed .socials-list { top: 42px; min-width: 140px; }
+      .socials { right: 12px !important; top: 12px !important; z-index: 1010 !important; }
+      .hero-socials a { width: 34px; height: 34px; font-size: 9px; } .socials-toggle { width: 38px; height: 38px; font-size: 16px; box-shadow: 4px 4px 0 var(--blue); } .socials-dropdown { top: 46px; min-width: 140px; }
       .hero { padding: 100px 20px 28px; background-position: center center !important; }
       .hero h1 { font-size: 44vw !important; line-height: .72 !important; letter-spacing: -.085em !important; }
       .hero-bottom { align-items: start; flex-direction: column; }
