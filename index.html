@@ -90,7 +90,7 @@
       color: #000;
     }
 
-    /* Floating Social Links */
+    /* Floating Social Links / Collapsible Dropdown */
     .socials {
       pointer-events: auto;
       position: fixed;
@@ -99,10 +99,50 @@
       top: 18px;
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
       gap: 7px;
-      transform: translateX(0);
     }
-    .socials a {
+    
+    /* Toggle button (shown only in collapsed mode) */
+    .socials-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+      box-shadow: 4px 4px 0 var(--blue);
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 900;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .socials-toggle:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    /* Social items list */
+    .socials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    /* Normal mode (on hero): individual square buttons */
+    .socials:not(.is-collapsed) .socials-toggle {
+      display: none !important;
+    }
+    .socials:not(.is-collapsed) .socials-list {
+      display: flex !important;
+      position: static !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+    .socials:not(.is-collapsed) .socials-list a {
       width: 40px;
       height: 40px;
       background: #fff;
@@ -115,9 +155,77 @@
       box-shadow: 4px 4px 0 var(--blue);
       transition: background 0.2s, color 0.2s;
     }
-    .socials a:hover {
+    .socials:not(.is-collapsed) .socials-list a:hover {
       background: var(--blue);
       color: #fff;
+    }
+    .socials:not(.is-collapsed) .social-abbr {
+      display: block !important;
+    }
+    .socials:not(.is-collapsed) .social-full {
+      display: none !important;
+    }
+
+    /* Collapsed mode (scrolled past hero): dropdown menu */
+    .socials.is-collapsed .socials-toggle {
+      display: flex !important;
+    }
+    .socials.is-collapsed .socials-list {
+      position: absolute !important;
+      top: 48px !important;
+      right: 0 !important;
+      background: rgba(5, 5, 5, .96) !important;
+      border: 1px solid rgba(255, 255, 255, .35) !important;
+      box-shadow: 6px 6px 0 var(--blue) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      padding: 6px !important;
+      gap: 4px !important;
+      min-width: 160px !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translateY(-8px) scale(0.96) !important;
+      transform-origin: top right !important;
+      pointer-events: none !important;
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s !important;
+    }
+    .socials.is-collapsed .social-abbr {
+      display: none !important;
+    }
+    .socials.is-collapsed .socials-list a {
+      width: 100% !important;
+      height: auto !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      display: block !important;
+      padding: 0 !important;
+    }
+    .socials.is-collapsed .social-full {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      width: 100% !important;
+      padding: 10px 14px !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      letter-spacing: .06em !important;
+      text-transform: uppercase !important;
+      color: #fff !important;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .socials.is-collapsed .socials-list a:hover .social-full {
+      background: #fff !important;
+      color: #000 !important;
+    }
+
+    /* Open dropdown when hovered or clicked (.is-open) */
+    .socials.is-collapsed:hover .socials-list,
+    .socials.is-collapsed.is-open .socials-list {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) scale(1) !important;
+      pointer-events: auto !important;
     }
 
     /* Hero Section */
@@ -536,7 +644,7 @@
       .nav { width: 100%; justify-content: space-between; }
       .nav a { padding: 9px 8px; font-size: 9px; }
       .socials { right: 12px; top: 12px; }
-      .socials a { width: 34px; height: 34px; font-size: 9px; }
+      .socials a { width: 34px; height: 34px; font-size: 9px; } .socials-toggle { width: 34px; height: 34px; font-size: 14px; } .socials.is-collapsed .socials-list { top: 42px; min-width: 140px; }
       .hero { padding: 100px 20px 28px; background-position: center center !important; }
       .hero h1 { font-size: 44vw !important; line-height: .72 !important; letter-spacing: -.085em !important; }
       .hero-bottom { align-items: start; flex-direction: column; }
@@ -563,12 +671,29 @@
     </nav>
   </header>
 
-  <!-- Social Links -->
-  <div class="socials">
-    <a href="https://www.instagram.com/diskri.ph/" target="_blank" aria-label="Instagram">IG</a>
-    <a href="https://t.me/skrizhalina" target="_blank" aria-label="Telegram">TG</a>
-    <a href="https://www.tiktok.com/@skrizhalina" target="_blank" aria-label="TikTok">TT</a>
-    <a href="mailto:diana.skrizhalina@icloud.com" aria-label="Email">@</a>
+  <!-- Social Links & Dropdown -->
+  <div class="socials" id="socialsBar">
+    <button class="socials-toggle" id="socialsToggle" aria-label="Контакты" title="Контакты" aria-expanded="false">
+      <span class="toggle-icon">✉</span>
+    </button>
+    <div class="socials-list" id="socialsList">
+      <a href="https://www.instagram.com/diskri.ph/" target="_blank" aria-label="Instagram">
+        <span class="social-abbr">IG</span>
+        <span class="social-full">Instagram <span>↗</span></span>
+      </a>
+      <a href="https://t.me/skrizhalina" target="_blank" aria-label="Telegram">
+        <span class="social-abbr">TG</span>
+        <span class="social-full">Telegram <span>↗</span></span>
+      </a>
+      <a href="https://www.tiktok.com/@skrizhalina" target="_blank" aria-label="TikTok">
+        <span class="social-abbr">TT</span>
+        <span class="social-full">TikTok <span>↗</span></span>
+      </a>
+      <a href="mailto:diana.skrizhalina@icloud.com" aria-label="Email">
+        <span class="social-abbr">@</span>
+        <span class="social-full">Email <span>↗</span></span>
+      </a>
+    </div>
   </div>
 
   <!-- Hero Section -->
@@ -872,6 +997,44 @@
       if (hg) {
         checkNextImage();
       }
+
+      
+      // 5. Socials Collapsible Dropdown when scrolling past .hero
+      const socialsBar = document.getElementById('socialsBar');
+      const socialsToggle = document.getElementById('socialsToggle');
+      const heroSection = document.querySelector('.hero');
+
+      function updateSocialsCollapse() {
+        if (!socialsBar || !heroSection) return;
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        // When hero scrolls out of view into .intro
+        if (heroBottom <= 90) {
+          socialsBar.classList.add('is-collapsed');
+        } else {
+          socialsBar.classList.remove('is-collapsed');
+          socialsBar.classList.remove('is-open');
+        }
+      }
+
+      window.addEventListener('scroll', updateSocialsCollapse, { passive: true });
+      window.addEventListener('resize', updateSocialsCollapse, { passive: true });
+      updateSocialsCollapse();
+
+      if (socialsToggle && socialsBar) {
+        socialsToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = socialsBar.classList.toggle('is-open');
+          socialsToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (socialsBar && !socialsBar.contains(e.target)) {
+          socialsBar.classList.remove('is-open');
+          if (socialsToggle) socialsToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
 
       // 4. Back to Top Button
       const btt = document.getElementById('backToTop');
