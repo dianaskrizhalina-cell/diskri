@@ -68,8 +68,10 @@
     .nav {
       pointer-events: auto;
       display: flex;
+      align-items: center;
+      height: 72px;
       gap: 6px;
-      padding: 10px;
+      padding: 8px;
       background: rgba(5, 5, 5, .92);
       border: 1px solid rgba(255, 255, 255, .35);
       box-shadow: 6px 6px 0 var(--red);
@@ -77,9 +79,12 @@
       -webkit-backdrop-filter: blur(12px);
     }
     .nav a {
-      padding: 16px 26px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
       color: #fff;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -103,7 +108,7 @@
     .hero-socials {
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 12px;
       opacity: 1;
       transform: translateY(0) scale(1);
       transform-origin: top right;
@@ -111,14 +116,14 @@
       transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-socials a {
-      width: 56px;
-      height: 56px;
+      width: 72px;
+      height: 72px;
       background: #fff;
       color: #000;
       border: 1px solid #000;
       display: grid;
       place-items: center;
-      font-size: 15px;
+      font-size: 19px;
       font-weight: 900;
       box-shadow: 6px 6px 0 var(--blue);
       transition: background 0.2s, color 0.2s, transform 0.2s;
@@ -706,6 +711,7 @@
       .nav { height: 38px; padding: 4px 7px; box-shadow: 4px 4px 0 var(--red); width: 100%; justify-content: space-between; align-items: center; }
       .nav a { height: 100%; display: flex; align-items: center; padding: 0 4px; font-size: 11px; letter-spacing: 0.02em; }
       .socials { right: 12px !important; top: 12px !important; z-index: 1010 !important; }
+      .hero-socials { gap: 6px; }
       .hero-socials a { width: 38px; height: 38px; font-size: 10px; box-shadow: 4px 4px 0 var(--blue); }
       .socials-toggle { width: 38px; height: 38px; box-shadow: 4px 4px 0 var(--blue); }
       .socials-toggle .toggle-icon { width: 18px; height: 18px; }
