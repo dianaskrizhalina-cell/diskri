@@ -69,7 +69,7 @@
       pointer-events: auto;
       display: flex;
       gap: 6px;
-      padding: 8px;
+      padding: 10px;
       background: rgba(5, 5, 5, .92);
       border: 1px solid rgba(255, 255, 255, .35);
       box-shadow: 6px 6px 0 var(--red);
@@ -77,9 +77,9 @@
       -webkit-backdrop-filter: blur(12px);
     }
     .nav a {
-      padding: 13px 20px;
+      padding: 16px 26px;
       color: #fff;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -111,14 +111,14 @@
       transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-socials a {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       background: #fff;
       color: #000;
       border: 1px solid #000;
       display: grid;
       place-items: center;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 900;
       box-shadow: 6px 6px 0 var(--blue);
       transition: background 0.2s, color 0.2s, transform 0.2s;
@@ -153,8 +153,8 @@
     }
 
     .socials-toggle {
-      width: 60px;
-      height: 60px;
+      width: 72px;
+      height: 72px;
       background: #fff;
       color: #000;
       border: 1px solid #000;
@@ -166,8 +166,8 @@
       transition: background 0.2s, color 0.2s, transform 0.2s;
     }
     .socials-toggle .toggle-icon {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       display: block;
       transition: transform 0.2s ease;
     }
@@ -183,7 +183,7 @@
 
     .socials-dropdown {
       position: absolute;
-      top: 68px;
+      top: 80px;
       right: 0;
       background: rgba(5, 5, 5, .96);
       border: 1px solid rgba(255, 255, 255, .35);
@@ -243,7 +243,7 @@
     .hero {
       position: relative !important;
       overflow: hidden !important;
-      background-image: linear-gradient(rgba(24,92,255,.18), rgba(24,92,255,.18)), url("static/background.jpg") !important;
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(24,92,255,0.18)), url("static/background_landscape.jpg") !important;
       background-size: cover !important;
       background-position: center center !important;
       background-repeat: no-repeat !important;
@@ -725,6 +725,7 @@
       .back-to-top { bottom: 18px; right: 18px; width: 38px; height: 38px; font-size: 18px; }
       .scroll-down { width: 40px; height: 40px; box-shadow: 4px 4px 0 var(--blue); bottom: 20px; }
       .scroll-down svg { width: 18px; height: 18px; }
+      .hero { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(24,92,255,.18)), url("static/background_portrait.jpg") !important; }
     }
   </style>
 </head>
