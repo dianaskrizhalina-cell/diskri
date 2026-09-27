@@ -317,6 +317,35 @@
       color: #fff;
     }
 
+    .scroll-down {
+      position: absolute;
+      bottom: clamp(15px, 4vh, 36px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+      box-shadow: 6px 6px 0 var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+      z-index: 10;
+    }
+    .scroll-down:hover {
+      background: var(--blue);
+      color: #fff;
+      transform: translateX(-50%) translateY(4px);
+      box-shadow: 0px 0px 0 var(--blue);
+    }
+    .scroll-down svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
     /* Common Sections */
     .section {
       padding: clamp(70px, 10vw, 150px) var(--pad);
@@ -363,6 +392,10 @@
     .bodycopy {
       font-size: clamp(17px, 1.5vw, 22px);
       line-height: 1.45;
+    }
+
+    .about-copy .bodycopy {
+      margin: 22px 0 0;
     }
 
     /* Work / Portfolio Section */
@@ -674,15 +707,15 @@
     /* Responsive / Mobile */
     @media (max-width: 800px) {
       .top { left: 12px !important; right: 58px !important; top: 12px !important; }
-      .nav { height: 38px; padding: 4px; box-shadow: 4px 4px 0 var(--red); width: 100%; justify-content: space-between; align-items: center; }
-      .nav a { height: 100%; display: flex; align-items: center; padding: 0 4px; font-size: 10.5px; letter-spacing: 0.02em; }
+      .nav { height: 38px; padding: 4px 7px; box-shadow: 4px 4px 0 var(--red); width: 100%; justify-content: space-between; align-items: center; }
+      .nav a { height: 100%; display: flex; align-items: center; padding: 0 4px; font-size: 11px; letter-spacing: 0.02em; }
       .socials { right: 12px !important; top: 12px !important; z-index: 1010 !important; }
       .hero-socials a { width: 38px; height: 38px; font-size: 10px; box-shadow: 4px 4px 0 var(--blue); }
       .socials-toggle { width: 38px; height: 38px; box-shadow: 4px 4px 0 var(--blue); }
       .socials-toggle .toggle-icon { width: 18px; height: 18px; }
       .socials-dropdown { top: 46px; min-width: 140px; box-shadow: 4px 4px 0 var(--blue); }
       .hero { padding: 100px 20px 28px; background-position: center center !important; }
-      .hero h1 { font-size: 34vw !important; line-height: .76 !important; letter-spacing: -.075em !important; margin: 0 !important; }
+      .hero h1 { font-size: 40vw !important; line-height: .76 !important; letter-spacing: -.075em !important; margin: 0 !important; }
       .hero h1 span { display: block; margin-left: .14em !important; }
       .hero-bottom { align-items: start; flex-direction: column; }
       .section { padding: 70px 20px; }
@@ -691,8 +724,10 @@
       .price-grid, .steps { grid-template-columns: 1fr; }
       .price-card { min-height: auto; }
       .step { border-right: 0; border-bottom: 2px solid #000; padding-bottom: 25px; }
-      .footer { padding: 18px 20px; gap: 15px; flex-direction: column; }
+      .footer { padding: 18px 20px; gap: 15px; flex-direction: row; }
       .back-to-top { bottom: 18px; right: 18px; width: 38px; height: 38px; font-size: 18px; }
+      .scroll-down { width: 40px; height: 40px; box-shadow: 4px 4px 0 var(--blue); bottom: 20px; }
+      .scroll-down svg { width: 18px; height: 18px; }
     }
   </style>
 </head>
@@ -742,10 +777,18 @@
       <p class="hero-role">Фотограф.</p>
       <a class="cta" href="#contact">Записаться на съёмку</a>
     </div>
+    
+    <!-- Scroll Down Button -->
+    <a class="scroll-down" href="#intro" aria-label="К следующему блоку" title="Вниз">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    </a>
   </section>
 
   <!-- Intro Section -->
-  <section class="section intro">
+  <section class="section intro" id="intro">
     <div class="intro-grid">
       <h2 class="display">МНЕ ВАЖЕН<br>ОБРАЗ.<br>ЧЕЛОВЕК ТОЖЕ.</h2>
       <div class="bodycopy">
