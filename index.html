@@ -317,34 +317,6 @@
       color: #fff;
     }
 
-    .scroll-down {
-      position: absolute;
-      bottom: clamp(15px, 4vh, 36px);
-      left: 50%;
-      transform: translateX(-50%);
-      width: 48px;
-      height: 48px;
-      background: #fff;
-      color: #000;
-      border: 1px solid #000;
-      box-shadow: 6px 6px 0 var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
-      z-index: 10;
-    }
-    .scroll-down:hover {
-      background: var(--blue);
-      color: #fff;
-      transform: translateX(-50%) translateY(4px);
-      box-shadow: 0px 0px 0 var(--blue);
-    }
-    .scroll-down svg {
-      width: 22px;
-      height: 22px;
-      display: block;
-    }
 
     /* Common Sections */
     .section {
@@ -562,10 +534,11 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       margin-top: 60px;
-      border-top: 2px solid #000;
+
     }
     .step {
-      padding: 28px 20px 20px 0;
+      padding: 28px 0px 20px 0px;
+      margin-right: 20px;
       border-right: 2px solid #000;
     }
     .step:last-child {
@@ -671,17 +644,15 @@
       font-size: 12px;
     }
 
-    /* Back to Top Button */
-    .back-to-top {
+    /* Scroll Action Buttons */
+    .back-to-top, .scroll-down {
       position: fixed;
       bottom: 24px;
-      right: var(--pad);
       width: 46px;
       height: 46px;
       background: #fff;
       color: #000;
       border: 2px solid #000;
-      box-shadow: 4px 4px 0 var(--red);
       font-size: 22px;
       font-weight: 900;
       display: flex;
@@ -689,10 +660,15 @@
       justify-content: center;
       cursor: pointer;
       z-index: 999;
+      transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s, color 0.2s;
+    }
+    
+    .back-to-top {
+      right: var(--pad);
+      box-shadow: 4px 4px 0 var(--red);
       opacity: 0;
       visibility: hidden;
       transform: translateY(12px);
-      transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s, color 0.2s;
     }
     .back-to-top.visible {
       opacity: 1 !important;
@@ -704,6 +680,22 @@
       color: #fff;
     }
 
+    .scroll-down {
+      left: var(--pad);
+      box-shadow: 4px 4px 0 var(--blue);
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-down.hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translateY(12px) !important;
+    }
+    .scroll-down:hover {
+      background: var(--blue);
+      color: #fff;
+    }
     /* Responsive / Mobile */
     @media (max-width: 800px) {
       .top { left: 12px !important; right: 58px !important; top: 12px !important; }
@@ -723,7 +715,8 @@
       .gallery { grid-template-columns: 1fr; }
       .price-grid, .steps { grid-template-columns: 1fr; }
       .price-card { min-height: auto; }
-      .step { border-right: 0; border-bottom: 2px solid #000; padding-bottom: 25px; }
+      .step { border-right: 0; border-bottom: 2px solid #000; padding-bottom: 25px; margin-right: 0; padding-right: 20px;}
+      .steps {border-top: 2px solid #000;}
       .footer { padding: 18px 20px; gap: 15px; flex-direction: row; }
       .back-to-top { bottom: 18px; right: 18px; width: 38px; height: 38px; font-size: 18px; }
       .scroll-down { width: 40px; height: 40px; box-shadow: 4px 4px 0 var(--blue); bottom: 20px; }
@@ -777,14 +770,8 @@
       <p class="hero-role">Фотограф.</p>
       <a class="cta" href="#contact">Записаться на съёмку</a>
     </div>
-    
-    <!-- Scroll Down Button -->
-    <a class="scroll-down" href="#intro" aria-label="К следующему блоку" title="Вниз">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <polyline points="19 12 12 19 5 12"></polyline>
-      </svg>
-    </a>
+
+    <!-- Scroll Down Button was moved -->
   </section>
 
   <!-- Intro Section -->
@@ -980,7 +967,8 @@
     <div class="counter" id="counter"></div>
   </div>
 
-  <!-- Back to Top Button -->
+  <!-- Scroll Action Buttons -->
+  <button id="scrollDown" class="scroll-down" aria-label="Вниз" title="К следующему блоку">↓</button>
   <button id="backToTop" class="back-to-top" aria-label="Наверх" title="Наверх">↑</button>
 
   <!-- JavaScript -->
@@ -1123,24 +1111,57 @@
         }
       });
 
-      // 4. Back to Top Button
+      // 4. Back to Top & Scroll Down Buttons
       const btt = document.getElementById('backToTop');
-      if (btt) {
-        function updateBackToTop() {
+      const sdb = document.getElementById('scrollDown');
+      
+      if (btt || sdb) {
+        function updateScrollButtons() {
           const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-          if (scrollPos > 300) {
-            btt.classList.add('visible');
-          } else {
-            btt.classList.remove('visible');
+          const maxScroll = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+          ) - window.innerHeight;
+
+          if (btt) {
+            if (scrollPos > 300) {
+              btt.classList.add('visible');
+            } else {
+              btt.classList.remove('visible');
+            }
+          }
+
+          if (sdb) {
+            if (scrollPos >= maxScroll - 50) {
+              sdb.classList.add('hidden');
+            } else {
+              sdb.classList.remove('hidden');
+            }
           }
         }
-        window.addEventListener('scroll', updateBackToTop, { passive: true });
-        window.addEventListener('resize', updateBackToTop, { passive: true });
-        updateBackToTop();
+        window.addEventListener('scroll', updateScrollButtons, { passive: true });
+        window.addEventListener('resize', updateScrollButtons, { passive: true });
+        updateScrollButtons();
 
-        btt.addEventListener('click', function() {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        if (btt) {
+          btt.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+
+        if (sdb) {
+          sdb.addEventListener('click', function() {
+            const sections = Array.from(document.querySelectorAll('.hero, .section'));
+            const nextSection = sections.find(sec => {
+              const rect = sec.getBoundingClientRect();
+              return rect.top > 10;
+            });
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        }
       }
     });
   </script>
