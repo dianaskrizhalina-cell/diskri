@@ -69,7 +69,7 @@
       pointer-events: auto;
       display: flex;
       gap: 6px;
-      padding: 6px;
+      padding: 8px;
       background: rgba(5, 5, 5, .92);
       border: 1px solid rgba(255, 255, 255, .35);
       box-shadow: 6px 6px 0 var(--red);
@@ -77,9 +77,9 @@
       -webkit-backdrop-filter: blur(12px);
     }
     .nav a {
-      padding: 11px 18px;
+      padding: 13px 20px;
       color: #fff;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -111,16 +111,16 @@
       transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-socials a {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       background: #fff;
       color: #000;
       border: 1px solid #000;
       display: grid;
       place-items: center;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 900;
-      box-shadow: 4px 4px 0 var(--blue);
+      box-shadow: 6px 6px 0 var(--blue);
       transition: background 0.2s, color 0.2s, transform 0.2s;
     }
     .hero-socials a:hover {
@@ -153,8 +153,8 @@
     }
 
     .socials-toggle {
-      width: 52px;
-      height: 52px;
+      width: 60px;
+      height: 60px;
       background: #fff;
       color: #000;
       border: 1px solid #000;
@@ -183,7 +183,7 @@
 
     .socials-dropdown {
       position: absolute;
-      top: 60px;
+      top: 68px;
       right: 0;
       background: rgba(5, 5, 5, .96);
       border: 1px solid rgba(255, 255, 255, .35);
@@ -195,7 +195,7 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      
+
       /* Hidden by default, zero opacity, never animated during scroll */
       opacity: 0;
       visibility: hidden;
@@ -253,8 +253,8 @@
       justify-content: center !important;
       padding-top: 90px !important;
       padding-bottom: 36px !important;
-      padding-left: var(--pad);
-      padding-right: var(--pad);
+      padding-left: max(var(--pad), calc((100vw - 1400px) / 2)) !important;
+      padding-right: max(var(--pad), calc((100vw - 1400px) / 2)) !important;
     }
     .hero::before {
       content: "";
@@ -334,6 +334,15 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+    .price-head,
+    .process-head,
+    .contact-head {
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .intro {
       background: var(--white);
       color: #000;
@@ -370,7 +379,7 @@
     }
     .work h2, .about h2, .formats h2, .approach h2, .process h2, .contact h2 {
       font-size: clamp(44px, 7vw, 100px);
-      line-height: .88;
+      line-height: .99;
       letter-spacing: -.06em;
       margin: 0;
       font-weight: 900;
@@ -505,7 +514,7 @@
       grid-template-columns: .9fr 1.1fr;
       gap: 8vw;
     }
-    .approach-copy p {
+    .approach-copy p, .bodycopy p {
       font-size: 20px;
       line-height: 1.45;
       margin: 0 0 25px;
@@ -664,16 +673,16 @@
 
     /* Responsive / Mobile */
     @media (max-width: 800px) {
-      .top { left: 12px !important; right: 54px !important; top: 12px !important; }
-      .nav { padding: 5px; width: 100%; justify-content: space-between; }
-      .nav a { padding: 6px 5px; font-size: 8.5px; }
+      .top { left: 12px !important; right: 58px !important; top: 12px !important; }
+      .nav { height: 38px; padding: 4px; box-shadow: 4px 4px 0 var(--red); width: 100%; justify-content: space-between; align-items: center; }
+      .nav a { height: 100%; display: flex; align-items: center; padding: 0 4px; font-size: 10.5px; letter-spacing: 0.02em; }
       .socials { right: 12px !important; top: 12px !important; z-index: 1010 !important; }
-      .hero-socials a { width: 34px; height: 34px; font-size: 9px; }
-      .socials-toggle { width: 34px; height: 34px; box-shadow: 4px 4px 0 var(--blue); }
-      .socials-toggle .toggle-icon { width: 16px; height: 16px; }
-      .socials-dropdown { top: 42px; min-width: 140px; }
+      .hero-socials a { width: 38px; height: 38px; font-size: 10px; box-shadow: 4px 4px 0 var(--blue); }
+      .socials-toggle { width: 38px; height: 38px; box-shadow: 4px 4px 0 var(--blue); }
+      .socials-toggle .toggle-icon { width: 18px; height: 18px; }
+      .socials-dropdown { top: 46px; min-width: 140px; box-shadow: 4px 4px 0 var(--blue); }
       .hero { padding: 100px 20px 28px; background-position: center center !important; }
-      .hero h1 { font-size: 29vw !important; line-height: .76 !important; letter-spacing: -.075em !important; margin: 0 !important; }
+      .hero h1 { font-size: 34vw !important; line-height: .76 !important; letter-spacing: -.075em !important; margin: 0 !important; }
       .hero h1 span { display: block; margin-left: .14em !important; }
       .hero-bottom { align-items: start; flex-direction: column; }
       .section { padding: 70px 20px; }
@@ -752,7 +761,7 @@
       <h2>АРТ-ПОРТРЕТЫ</h2>
       <div class="work-note">/ свет, образ, постановка и обработка</div>
     </div>
-    
+
     <div class="gallery">
       <figure class="card"><img src="static/image_1.jpg" alt="Арт-портрет DI SKRI" loading="lazy"></figure>
       <figure class="card"><img src="static/image_2.jpg" alt="Арт-портрет DI SKRI" loading="lazy"></figure>
@@ -805,7 +814,9 @@
 
   <!-- Pricing Formats -->
   <section class="section formats" id="price">
-    <h2>ВЫБЕРЕМ ФОРМАТ</h2>
+    <div class="price-head">
+      <h2>ВЫБЕРЕМ ФОРМАТ</h2>
+    </div>
     <div class="price-grid">
       <article class="price-card">
         <h3>АРТ-ПОРТРЕТ</h3>
@@ -864,7 +875,9 @@
 
   <!-- Process Section -->
   <section class="section process">
-    <h2>ОТ ИДЕИ<br>ДО КАДРА</h2>
+    <div class="process-head">
+      <h2>МЫСЛЬ &rarr; КАДР</h2>
+    </div>
     <div class="steps">
       <article class="step">
         <span>01</span>
@@ -891,7 +904,9 @@
 
   <!-- Contact Section -->
   <section class="section contact" id="contact">
-    <h2>ДАВАЙТЕ ПРИДУМАЕМ<br>СЪЁМКУ.</h2>
+    <div class="contact-head">
+      <h2>ДАВАЙТЕ ПРИДУМАЕМ<br>СЪЁМКУ.</h2>
+    </div>
     <div class="contact-grid">
       <div class="contact-copy">
         <p>Можно написать мне с идеей, референсом или просто с желанием сделать хорошие фотографии.</p>
@@ -1027,7 +1042,7 @@
         checkNextImage();
       }
 
-      
+
       // 5. Socials Collapsible Dropdown when scrolling past .hero
       const socialsBar = document.getElementById('socialsBar');
       const socialsToggle = document.getElementById('socialsToggle');
